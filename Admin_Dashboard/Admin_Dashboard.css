@@ -1,0 +1,10 @@
+.separation {
+    height: 1vh;
+    background-color: #ec4bfa;
+}
+
+img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+}

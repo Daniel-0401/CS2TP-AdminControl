@@ -1,4 +1,4 @@
-name = "admin-worker"
+name = "my-worker"
 compatibility_date = "2025-01-01"
 type = "javascript"
 account_id = "d77b11898f84cdae637bb1bf25d7d3c0"

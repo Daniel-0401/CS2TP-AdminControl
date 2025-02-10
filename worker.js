@@ -1,4 +1,4 @@
-import { sha256 } from "js-sha256"; // OTP Hashing
+import { sha256 } from "https://cdn.skypack.dev/js-sha256"; // Secured Hashing
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);

@@ -1,4 +1,4 @@
-import { sha256 } from "js-sha256"; // Secure hashing
+import { sha256 } from "js-sha256"; // OTP Hashing
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -19,11 +19,11 @@ async function generateOTP(request, env) {
     return new Response(JSON.stringify({ error: "Email is required" }), { status: 400 });
   }
 
-  const otp = Math.floor(100000 + Math.random() * 900000).toString(); // Unique 6-digit OTP
-  const hashedOTP = sha256(otp); // Secure hash to store
-  const expiresAt = Date.now() + 10 * 60 * 1000; // OTP valid for 10 minutes
+  const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+  const hashedOTP = sha256(otp); // Hash & Store OTP
+  const expiresAt = Date.now() + 5 * 60 * 1000; // Expired : 5 min
 
-  // Store the hashed OTP and expiration timestamp in KV
+  // Store OTP and Expire Time in KV
   await env.AUTH_KV.put(`otp_${email}`, JSON.stringify({ hashedOTP, expiresAt }), { expirationTtl: 600 });
 
   // Send OTP via Email.js
@@ -48,12 +48,12 @@ async function verifyOTP(request, env) {
 
   const { hashedOTP, expiresAt } = JSON.parse(storedData);
 
-  // Check expiration
+  // Check Expiration
   if (Date.now() > expiresAt) {
     return new Response(JSON.stringify({ error: "OTP expired" }), { status: 400 });
   }
 
-  // Verify OTP using hash comparison
+  // Verify OTP
   if (sha256(otp) === hashedOTP) {
     await env.AUTH_KV.delete(`otp_${email}`); // Remove OTP after use
     return new Response(JSON.stringify({ message: "OTP verified successfully!" }), { status: 200 });
@@ -62,6 +62,7 @@ async function verifyOTP(request, env) {
   }
 }
 
+// Send Email with OTP
 async function sendEmailOTP(email, otp) {
   const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
     method: "POST",
@@ -74,6 +75,7 @@ async function sendEmailOTP(email, otp) {
     })
   });
 
+// Email Sending Response
   if (response.ok) {
     return { success: true };
   } else {

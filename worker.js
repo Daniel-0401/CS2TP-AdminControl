@@ -1,16 +1,3 @@
-async fetch(request, env) {
-  const url = new URL(request.url);
-  console.log("Pathname:", url.pathname);  // Log the pathname to debug
-  
-  if (url.pathname === "/generate-otp") {
-    return generateOTP(request, env);
-  } else if (url.pathname === "/verify-otp") {
-    return verifyOTP(request, env);
-  } else {
-    return new Response("404 Not Found", { status: 404 });
-  }
-}
-
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);

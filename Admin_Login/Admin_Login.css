@@ -114,6 +114,12 @@ h1, h2{
     text-decoration: underline;
 }
 
+.back-format {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
+}
+
 .login-box form a {
     position: relative;
     display: inline-block;

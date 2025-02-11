@@ -6,3 +6,6 @@ main = "worker.js"
 workers_dev = false
 route = "https://theaura.us.kg/*"
 zone_id = "66b43dea5c844f14a03661b07e329a8f"
+[env.production]
+name = "aura-worker"
+route = "https://aura-worker.sodaniel717.workers.dev/" 

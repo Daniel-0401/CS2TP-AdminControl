@@ -8,4 +8,4 @@ route = "https://theaura.us.kg/*"
 
 [env.production]
 name = "aura-worker"
-route = "https://aura-worker.sodaniel717.workers.dev/"
+route = "https://workers.theaura.us.kg/*"

@@ -19,8 +19,8 @@ async function generateOTP(request, env) {
   }
 
   const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
-  const hashedOTP = sha256(otp); // Hash & Store OTP
-  const expiresAt = Date.now() + 5 * 60 * 1000; // Expired : 5 min
+  const hashedOTP = await sha256(otp); // Hash & Store OTP
+  const expiresAt = Date.now() + 5 * 60 * 1000; // Expires in 5 minutes
 
   // Store OTP and Expire Time in KV
   await env.AUTH_KV.put(`otp_${email}`, JSON.stringify({ hashedOTP, expiresAt }), { expirationTtl: 600 });
@@ -36,18 +36,18 @@ async function generateOTP(request, env) {
 
 // Normal Hashing Function
 async function sha256(message) {
-    // encode as UTF-8
-    const msgBuffer = new TextEncoder().encode(message);                    
+  // encode as UTF-8
+  const msgBuffer = new TextEncoder().encode(message);
 
-    // hash the message
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  // hash the message
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
 
-    // convert ArrayBuffer to Array
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
+  // convert ArrayBuffer to Array
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
 
-    // convert bytes to hex string                  
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex;
+  // convert bytes to hex string
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex;
 }
 
 async function verifyOTP(request, env) {
@@ -69,7 +69,8 @@ async function verifyOTP(request, env) {
   }
 
   // Verify OTP
-  if (sha256(otp) === hashedOTP) {
+  const hashedInputOTP = await sha256(otp);
+  if (hashedInputOTP === hashedOTP) {
     await env.AUTH_KV.delete(`otp_${email}`); // Remove OTP after use
     return new Response(JSON.stringify({ message: "OTP verified successfully!" }), { status: 200 });
   } else {
@@ -90,7 +91,7 @@ async function sendEmailOTP(email, otp) {
     })
   });
 
-// Email Sending Response
+  // Email Sending Response
   if (response.ok) {
     return { success: true };
   } else {

@@ -4,8 +4,9 @@ type = "javascript"
 account_id = "d77b11898f84cdae637bb1bf25d7d3c0"
 main = "worker.js"
 workers_dev = false
-route = "https://theaura.us.kg/*"
+route = "https://workers.theaura.us.kg/*"  # Make sure this matches your subdomain
+zone_id = "66b43dea5c844f14a03661b07e329a8f"
 
 [env.production]
 name = "aura-worker"
-route = "https://workers.theaura.us.kg/*"
+route = "https://workers.theaura.us.kg/*"  # Ensure this route is set for your worker

@@ -1,0 +1,29 @@
+name: Deploy to Cloudflare Worker
+
+on:
+  push:
+    branches:
+      - main # or whichever branch you want to trigger deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # or whichever version you prefer
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Deploy to Cloudflare
+        env:
+          CF_API_TOKEN: ${{ secrets.aura-admin }}
+          CF_ACCOUNT_ID: ${{ secrets.d77b11898f84cdae637bb1bf25d7d3c0 }}
+          CF_WORKER_NAME: ${{ secrets.worker.js }}
+        run: |
+          npx wrangler publish --env production

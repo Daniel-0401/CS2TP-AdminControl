@@ -22,7 +22,7 @@
 <div class="login-menu">
     <!-- Logo & Text -->
     <div class="logo-text" style="text-align: center;">
-        <img src="../Aura_Image/Aura_logo.png" alt="AU-RA Logo">
+        <img src="Aura_Image/Aura_logo.png" alt="AU-RA Logo">
         <h1>AU-RA</h1>
         <h2>Fragrance Your Soul</h2>
      </div>
@@ -43,14 +43,15 @@
                 <input type="password" id="pw" required>
                 <label><b>Password</b></label>
             </div>
+            <p style="color: red; font-weight:bold;" id="login error"></p>
             <br>
             <input type="checkbox" onclick="showPW()" offclick="hidePW()"> Show Password
-            <br><br>
+            <br>
             <div class="forgot-field">
                 <span class="forgot-format" href="Admin_Login/forgot_pw.html">Forgot Password?</span>
             </div>
             <center>
-                <a href="Admin_Dashboard/Admin_Dashboard.html" onclick="loginCheck()">LOGIN
+                <a onclick="loginCheck()">LOGIN
                     <!-- Button Animation -->
                     <span></span>
                 </a>

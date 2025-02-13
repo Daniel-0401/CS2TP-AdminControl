@@ -69,6 +69,10 @@ h1, h2{
     position: relative;
 }
 
+.login-form p {
+    margin-left: 2%;
+}
+
 .login-box input {
     margin-left: 2%;
     accent-color: burlywood;

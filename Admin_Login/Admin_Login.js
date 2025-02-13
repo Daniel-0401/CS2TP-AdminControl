@@ -41,7 +41,7 @@ function passwordRegexCheck() {
 }
 
 //-------------------------------------------------------------------------------------------
-const workerUrl = "https://workers.theaura.us.kg"; // Cloudflare Worker Link
+/*const workerUrl = "https://workers.theaura.us.kg"; // Cloudflare Worker Link
 
 // Generate OTP
 document.getElementById("generate otp").addEventListener("click", async () => {
@@ -101,4 +101,4 @@ function showMessage(elementId, message, type) {
   const messageElement = document.getElementById(elementId);
   messageElement.textContent = message;
   messageElement.className = `message ${type}`;
-}
+}*/

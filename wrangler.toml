@@ -1,5 +1,5 @@
-name = "my-worker"
-compatibility_date = "2025-01-01"
+name = "aura-worker"
+compatibility_date = "2025-02-10"
 type = "javascript"
 account_id = "d77b11898f84cdae637bb1bf25d7d3c0"
 main = "worker.js"
@@ -9,3 +9,4 @@ route = "https://theaura.us.kg/*"
 [env.production]
 name = "aura-worker"
 route = "https://workers.theaura.us.kg/*"
+zone = "66b43dea5c844f14a03661b07e329a8f"

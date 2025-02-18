@@ -63,7 +63,7 @@ body{
 
 .container  {
   display: grid;
-  width: 96%;
+  width: 100%;
   gap: 1.8rem;
   grid-template-columns: 14rem auto 16rem;
   margin: 0 auto;

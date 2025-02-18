@@ -32,7 +32,7 @@
 
     <!-- Function Form -->
     <div class="login-box">
-        <form class="login-form">
+        <form class="login-form" onsubmit="loginCheck(event); return false;">
             <!-- Login Section -->
             <br><br>
             <div class="login-field">
@@ -43,20 +43,20 @@
                 <input type="password" id="pw" required>
                 <label><b>Password</b></label>
             </div>
-            <p style="color: red; font-weight:bold;" id="login error"></p>
+            <p style="color: red; font-weight:bold;" id="login-error"></p>
             <br>
             <input type="checkbox" onclick="showPW()"> Show Password
             <br>
             <div class="forgot-field">
-                <span class="forgot-format" href="./Admin_Login/forgot_pw.html">Forgot Password?</span>
+                <span class="forgot-format" onclick="window.location.href='Admin_Login/forgot_pw.html'">Forgot Password?</span>
             </div>
             <center>
-                <a onclick="loginCheck()">LOGIN
+                <button onclick="loginCheck()">LOGIN
                     <!-- Button Animation -->
                     <span></span>
-                </a>
+                </button>
             </center>
-            <br>
+            <br>    
         </form>
     </div>
 </div>

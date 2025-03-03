@@ -1,4 +1,14 @@
-"homepage": "https://daniel-0401.github.io/cs2tp-AdminControl",
-"scripts": {
-  "build": "vite build"
+{
+  "name": "cs2tp-AdminControl",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build",
+    "start": "vite"
+  },
+  "homepage": "https://daniel-0401.github.io/cs2tp-AdminControl",
+  "dependencies": {
+    "vite": "^3.0.0"
+  }
 }
